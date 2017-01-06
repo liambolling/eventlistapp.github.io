@@ -70,6 +70,15 @@
         height: 412px;
     }
 
+    @media (max-width: 767px) {
+        .col-xs-6{
+            width: 310px;
+            display: table;
+            margin: 0 auto;
+            float: none;
+        }
+    }
+
     /*h3 {
         font-family:'Tofino_Bold', sans-serif;
         font-size: 26px;
@@ -131,8 +140,6 @@
 
         <div class="row">
 
-            <div class="visible-xs col-xs-3">
-            </div>
 
             <div class="col-md-4 col-sm-5 col-xs-6" style="height:580px;">
                 <div style="position:absolute;">
@@ -163,8 +170,7 @@
                 </div>
             </div>
 
-            <div class="visible-xs col-xs-3">
-            </div>
+
 
             <div class="hidden-xs col-md-8 col-sm-7">
                 <img src="img/eventlist-icon.png" width="75" height="75" />
