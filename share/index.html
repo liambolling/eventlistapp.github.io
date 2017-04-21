@@ -5,18 +5,19 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Eventlist - Specials</title>
-
+    <title>ZipClip - Video Clips Happening Around You</title>
     <script type="text/javascript" src="js/parse.min.js"></script>
-
     <script type="text/javascript" src="js/underscore-min.js"></script>
 
-    <!-- Latest compiled and minified CSS -->
+    <meta property="og:title" content="IU EventList - Everything Happening in Bloomington, IN" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://www.zipclipapp.com" />
+    <meta property="og:image" content="img/social.png" />
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -24,44 +25,102 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <style>
+    body {
+        background-color: #fff;
+    }
+    @font-face {
+        font-family:"Tofino_Bold";
+        src: url("../fonts/Tofino_OTF/Tofino_Bold.otf")
+    }
+    @font-face {
+        font-family:"Tofino_Bold";
+        src: url("../fonts/Tofino_TTF/Tofino_Bold.tff")
+    }
+
+    @font-face {
+        font-family:"Tofino_Regular";
+        src: url("../fonts/Tofino_OTF/Tofino_Regular.otf")
+    }
+    @font-face {
+        font-family:"Tofino_Regular";
+        src: url("../fonts/Tofino_TTF/Tofino_Regular.tff")
+    }
+
+    h1 {
+        color: #e82048;
+        font-family:'Tofino_Bold', sans-serif;
+        font-size: 32px;
+    }
+
+    p {
+        font-family:'Tofino_Regular', sans-serif;
+        color: #999;
+        font-size: 14px;
+    }
+
+    h4 {
+        color: #999;
+        font-family:'Tofino_Regular', sans-serif;
+        font-size: 16px;
+        text-align: center;
+    }
+
+    a{
+        font-family:'Tofino_Regular', sans-serif;
+    }
+
+    .btn-primary{
+        background-color: #e82048;
+        border-color: #e82048;
+    }
+
+    .btn-primary:hover{
+        background-color: #e82048;
+        border-color: #e82048;
+    }
+
+    </style>
 </head>
 
 <body>
 
     <div class="container">
+        <div class="row">
 
-        <!-- Static navbar -->
+            <div style="width:360px; margin-left:auto; margin-right: auto;">
 
+            <h1 style="margin-top:20px; text-align:center;">ZipClip</h1>
+            <p style="text-align:center;">
+                Somebody shared a ZipClip with you. Watch it then open the app to see what people are saying!
+            </p>
 
-        <!-- Main component for a primary marketing message or call to action -->
-        <div class="jumbotron">
-            <h1>SHARE EXAMPLE</h1>
+            <div id="videoPlayer" style="border-radius:7px;">
+                <video width="360" id height="480" style="border-radius:7px; box-shadow: 0px 2px 6px grey;" controls loop="true">
+                  <source src="" class="videoUrl" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+            </div>
 
-            <div id="videoPlayer">
+            <p style="text-align:center; margin-top:15px; color: #ccc;">
+                •••
+            </p>
 
+            <h4>Join the Conversation & Vote</h4>
+            <a class="btn btn-primary openEventlist" target="_blank" style="width: 360px;" href="">Open in ZipClip</a>
 
-            <video width="320" id height="240" controls>
-              <source src="" class="videoUrl" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-        </div>
+            <p style="text-align:center; margin-top:10px; color: #ccc;">
+                OR
+            </p>
+            <a class="btn btn-primary" style="width: 360px; margin-bottom: 25px;" target="_blank" href="https://itunes.apple.com/us/app/zipclip-video-clips-happening-around-you/id1141779329?mt=8">Get ZipClip</a>
 
-
-            <a class="btn btn-primary openEventlist" href="">Open in Eventlist</a>
-
-
+            </div>
         </div>
     </div>
-
-
-
-    </div>
-    <!-- /container -->
-
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
 
     <script>
         Parse.initialize("BgVChsQtdgaGahzPdzuNtrXTUmXgbPrLXVrRT09N");
@@ -84,16 +143,6 @@
 
             var eventlistapplink = "com.eventlist.app://?storyId="+queryDict['objectId']
             $(".openEventlist").attr("href", eventlistapplink);
-
-
-
-            // var currentUser = Parse.User.current();
-            // if (currentUser) {
-            //     // Do nothing
-            // } else {
-            //     alert("You are not logged in or do not have permission to access this page");
-            //     window.location.href = "../index.html";
-            // }
         });
 
 
@@ -108,36 +157,19 @@
             searchData("venue");
         });
 
-
         function queryInfo(queryInfo) {
 
-            console.log(queryInfo);
-
             var GameScore = Parse.Object.extend("stories");
-
             var query = new Parse.Query(GameScore);
             query.limit(1);
             query.equalTo("objectId", queryInfo["objectId"]);
 
             query.find({
                 success: function(object) {
-
-                    console.log("object: ",object);
-
                     $(".nameOfThing").html(object[0].get("name"));
-
-                    console.log(object[0].get("video"));
-
-                    console.log(object[0].get("video")["_url"]);
 
                     $('#videoPlayer video source').attr('src', object[0].get("video")["_url"]);
                     $("#videoPlayer video")[0].load();
-
-
-                    //$(".videoUrl").html(object[0].get("name"));
-
-
-
                 },
                 error: function(error) {
                     alert("Error: " + error.code + " " + error.message);
@@ -146,8 +178,5 @@
         }
 
     </script>
-
-
 </body>
-
 </html>
